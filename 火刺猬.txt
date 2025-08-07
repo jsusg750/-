@@ -149,6 +149,20 @@ player:AddButton({
 })
 
 local Tab = Window:MakeTab({
+    Name = "监狱锻炼战斗",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    
+loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/PrisonPump"))()
+    end
+})
+
+local Tab = Window:MakeTab({
     Name = "巴掌大战",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
@@ -330,12 +344,12 @@ Tab:AddButton({
 	Name = "ato",
 	Callback = function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/atoyayaya/jiaoben/main/jiamilist"))()
-end
+    end
 })
 
 Tab:AddButton({
 	Name = "假延迟",
 	Callback = function()
 loadstring(game:HttpGet("https://pastebin.com/raw/riksRExY", true))()
-end
+    end
 })
