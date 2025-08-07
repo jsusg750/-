@@ -209,19 +209,6 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-    Name = "种植花园",
-    Icon = "rbxassetid://7734068321",
-    PremiumOnly = false
-})
-
-Tab:AddButton({
-    Name = "1",
-    Callback = function()
-    loadstring(request({Url="https://raw.githubusercontent.com/VG-1/-/refs/heads/main/Linnibeta种植花园Money.lua"}).Body)()
-    end
-})
-
-local Tab = Window:MakeTab({
     Name = "偷走脑红",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
