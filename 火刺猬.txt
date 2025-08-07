@@ -185,6 +185,20 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub
 })
 
 local Tab = Window:MakeTab({
+    Name = "rake",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "wayfet",
+    Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Wayfer0/Roblox-Scripts/refs/heads/main/Wayfer%20Hub"))()
+    end
+})
+
+local Tab = Window:MakeTab({
     Name = "小屋角色扮演",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
@@ -316,6 +330,13 @@ Tab:AddButton({
     Name = "WTB",
     Callback = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器'))()
+    end
+})
+
+Tab:AddButton({
+    Name = "lol免费版",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Syndromehsh/BETA2/refs/heads/main/NOL"))()
     end
 })
 
