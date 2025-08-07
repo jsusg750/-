@@ -175,6 +175,13 @@ Tab:AddButton({
     end
 })
 
+Tab:AddButton({
+    Name = "获取收音机",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/AWS/refs/heads/main/Protected_5792205824061745.txt"))()
+    end
+})
+
 local Tab = Window:MakeTab({
     Name = "森林99夜",
     Icon = "rbxassetid://7734068321",
@@ -205,6 +212,39 @@ Tab:AddButton({
     Name = "最强平民脚本",
     Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Wayfer0/Roblox-Scripts/refs/heads/main/Wayfer%20Hub"))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "种植花园",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    loadstring(request({Url="https://raw.githubusercontent.com/VG-1/-/refs/heads/main/Linnibeta种植花园Money.lua"}).Body)()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "偷走脑红",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    ﻿loadstring(game:HttpGet('https://raw.githubusercontent.com/godor1010/godor/refs/heads/main/0_steal_a_brainrot'))()
+    end
+})
+
+Tab:AddButton({
+    Name = "2",
+    Callback = function()
+    ﻿loadstring(game:HttpGet("https://raw.githubusercontent.com/Youifpg/Steal-a-Brianrot/refs/heads/main/ArbixHubBEST.lua"))()
     end
 })
 
