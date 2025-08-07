@@ -175,6 +175,13 @@ Tab:AddButton({
     end
 })
 
+Tab:AddButton({
+    Name = "获取收音机",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/AWS/refs/heads/main/Protected_5792205824061745.txt"))()
+    end
+})
+
 local Tab = Window:MakeTab({
     Name = "森林99夜",
     Icon = "rbxassetid://7734068321",
