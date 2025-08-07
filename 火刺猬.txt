@@ -175,6 +175,14 @@ Tab:AddButton({
     end
 })
 
+Tab:AddButton({
+    Name = "全徽章",
+    Callback = function()
+
+loadstring(game:HttpGet(" https://raw.githubusercontent.com/IncognitoScripts/SlapBattles/main/EquipAnyBadgeGloves", true))()
+    end
+})
+
 local Tab = Window:MakeTab({
     Name = "监狱人生",
     Icon = "rbxassetid://7734068321",
@@ -185,6 +193,20 @@ Tab:AddButton({
     Name = "1",
     Callback = function()
     loadstring(game:HttpGet("https://paste.website/p/51397c68-b6d0-410d-ae9f-22d5ea5734df.txt", true))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "造船寻宝自动建造",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+
+loadstring(game:HttpGet((" https://raw.githubusercontent.com/catblox1346/StensUIReMake/refs/heads/main/Script/boatbuilderhub_B1"),true))()
     end
 })
 
@@ -244,6 +266,21 @@ Tab:AddButton({
     Name = "杯脚本",
     Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/zuohongjian/bjb/main/bjb"))()
+    end
+})
+
+Tab:AddButton({
+    Name = "霖溺",
+    Callback = function()
+    LnScript = "霖溺-免费版加载器"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ScriptLoader/refs/heads/main/Linni_FreeLoader.lua"))()
+    end
+})
+
+Tab:AddButton({
+    Name = "WTB",
+    Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/S-WTB/-/refs/heads/main/ISIS加载器'))()
     end
 })
 
