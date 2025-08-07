@@ -144,7 +144,7 @@ player:AddButton({
 player:AddButton({
 	Name = "飞行",
 	Callback = function()
-      	loadstring(game:HttpGet("https://pastebin.com/raw/U27yQRxS"))()
+      	loadstring(game:HttpGet("https://raw.githubusercontent.com/114514icu/main/refs/heads/shalang/Fly"))()
   	end
 })
 
