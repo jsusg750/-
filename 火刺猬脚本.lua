@@ -209,26 +209,6 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
-    Name = "偷走脑红",
-    Icon = "rbxassetid://7734068321",
-    PremiumOnly = false
-})
-
-Tab:AddButton({
-    Name = "1",
-    Callback = function()
-    ﻿loadstring(game:HttpGet('https://raw.githubusercontent.com/godor1010/godor/refs/heads/main/0_steal_a_brainrot'))()
-    end
-})
-
-Tab:AddButton({
-    Name = "2",
-    Callback = function()
-    ﻿loadstring(game:HttpGet("https://raw.githubusercontent.com/Youifpg/Steal-a-Brianrot/refs/heads/main/ArbixHubBEST.lua"))()
-    end
-})
-
-local Tab = Window:MakeTab({
     Name = "被遗弃",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
