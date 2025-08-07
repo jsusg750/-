@@ -188,6 +188,26 @@ Tab:AddButton({
     end
 })
 
+Tab:AddButton({
+    Name = "全自动钻石",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "rake",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "最强平民脚本",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Wayfer0/Roblox-Scripts/refs/heads/main/Wayfer%20Hub"))()
+    end
+})
+
 local Tab = Window:MakeTab({
     Name = "被遗弃",
     Icon = "rbxassetid://7734068321",
