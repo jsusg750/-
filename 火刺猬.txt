@@ -163,6 +163,42 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/
 })
 
 local Tab = Window:MakeTab({
+    Name = "森林99夜",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "H4x",
+    Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/H4xScripts/Loader/refs/heads/main/loader.lua",true))()
+    end
+})
+
+Tab:AddButton({
+    Name = "全自动收集钻石",
+    Callback = function()
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NAVAAI098/Thunder-Hub/main/Kaitun.lua"))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "小屋角色扮演",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+
+loadstring(game:HttpGet(' https://raw.githubusercontent.com/M1ZZ001/CabinRoleplay/main/Script'))()
+    end
+})
+
+local Tab = Window:MakeTab({
     Name = "巴掌大战",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
@@ -171,8 +207,7 @@ local Tab = Window:MakeTab({
 Tab:AddButton({
     Name = "1",
     Callback = function()
-    loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()
-    end
+    loadstring(game:HttpGet(("https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles")))()   end
 })
 
 Tab:AddButton({
