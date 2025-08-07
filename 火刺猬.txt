@@ -429,13 +429,13 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "ato",
 	Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/atoyayaya/jiaoben/main/jiamilist"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/atoyayaya/jiaoben/main/jiamilist"))()
     end
 })
 
 Tab:AddButton({
 	Name = "假延迟",
 	Callback = function()
-loadstring(game:HttpGet("https://pastebin.com/raw/riksRExY", true))()
+    loadstring(game:HttpGet("https://pastebin.com/raw/riksRExY", true))()
     end
 })
