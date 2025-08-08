@@ -215,6 +215,13 @@ Tab:AddButton({
     end
 })
 
+Tab:AddButton({
+    Name = "sapienV1",
+    Callback = function()
+    loadstring(game:HttpGet("https://sapien-w76a.onrender.com/start"))()
+    end
+})
+
 local Tab = Window:MakeTab({
     Name = "被遗弃",
     Icon = "rbxassetid://7734068321",
