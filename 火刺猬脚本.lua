@@ -236,6 +236,26 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
+    Name = "chain",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/6Zdt8y6z'))()
+    end
+})
+
+Tab:AddButton({
+    Name = "2",
+    Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/LESum4rq'))()
+    end
+})
+
+local Tab = Window:MakeTab({
     Name = "死铁轨",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
