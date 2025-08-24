@@ -144,7 +144,7 @@ player:AddButton({
 player:AddButton({
 	Name = "飞行",
 	Callback = function()
-      	loadstring(game:HttpGet("https://raw.githubusercontent.com/114514icu/main/refs/heads/shalang/Fly"))()
+      	loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111"))()
   	end
 })
 
@@ -236,6 +236,19 @@ Tab:AddButton({
 })
 
 local Tab = Window:MakeTab({
+    Name = "造船寻宝",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "自动建造",
+    Callback = function()
+    loadstring(game:HttpGet((" https://raw.githubusercontent.com/catblox1346/StensUIReMake/refs/heads/main/Script/boatbuilderhub_B1"),true))()
+    end
+})
+
+local Tab = Window:MakeTab({
     Name = "chain",
     Icon = "rbxassetid://7734068321",
     PremiumOnly = false
@@ -252,6 +265,58 @@ Tab:AddButton({
     Name = "2",
     Callback = function()
     loadstring(game:HttpGet('https://pastebin.com/raw/LESum4rq'))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "sol'RNG",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Just3itx/Backup/main/loader.lua"))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "忍者传奇",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1(忍者注入器不可用)",
+    Callback = function()
+    loadstring(game:HttpGet(" https://raw.githubusercontent.com/ZhenX201/Ninja_Legends/refs/heads/main/source",true))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "偷走脑红",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/UCT-hub/5b11d10386f1b8ce08feb803861e0b79/raw/b2917b398d4b0cc80fb2aca73a3137ba494ebcf0/gistfile1.txt"))()
+    end
+})
+
+local Tab = Window:MakeTab({
+    Name = "墨水游戏",
+    Icon = "rbxassetid://7734068321",
+    PremiumOnly = false
+})
+
+Tab:AddButton({
+    Name = "1",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/wefwef127382/inkgames.github.io/refs/heads/main/ringta.lua"))()
     end
 })
 
@@ -311,6 +376,13 @@ Tab:AddButton({
     Name = "力量传奇1",
     Callback = function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/jynzl/main/main/Musclas%20Legenos.lua'))()
+    end
+})
+
+Tab:AddButton({
+    Name = "docaV1",
+    Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/DocaV1/Get-Huge-Simulator/refs/heads/main/V1.0.1"))()
     end
 })
 
