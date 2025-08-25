@@ -213,6 +213,8 @@ Tab6:CreateButton({
     Name = "Wayfer",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Wayfer0/Roblox-Scripts/refs/heads/main/Wayfer%20Hub"))()
+    end
+})
 
 Tab7:CreateButton({
     Name = "Httadmin",
