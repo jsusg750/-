@@ -91,6 +91,20 @@ Tab2:CreateButton({
 })
 
 Tab2:CreateButton({
+    Name = "撸管r6",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
+    end
+})
+
+Tab2:CreateButton({
+    Name = "撸管r15",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
+    end
+})
+
+Tab2:CreateButton({
     Name = "旋转",
     Callback = function()
         loadstring(game:HttpGet('https://pastebin.com/raw/r97d7dS0'))()
@@ -195,6 +209,34 @@ Tab4:CreateButton({
     end
 })
 
+Tab4:CreateButton({
+    Name = "哨声fe",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Umbrella-Scripter/Slap-Battles/refs/heads/main/F.L.O.W.E.R.lua'))()
+    end
+})
+
+Tab4:CreateButton({
+    Name = "目前最强",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Guy-that-exists/Hub-that-exists/main/Script"))()
+    end
+})
+
+Tab4:CreateButton({
+    Name = "免费收音机fe",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Donjosx/AWS/refs/heads/main/Protected_5792205824061745.txt"))()
+    end
+})
+
+Tab4:CreateButton({
+    Name = "冰霜领主",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/LYJzX6un/raw"))();
+    end
+})
+
 Tab5:CreateButton({
     Name = "H4x",
     Callback = function()
@@ -265,6 +307,13 @@ Tab13:CreateButton({
     end
 })
 
+Tab13:CreateButton({
+    Name = "上面的汉化版",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hdjsjjdgrhj/script-hub/refs/heads/main/Ringta"))()
+    end
+})
+
 Tab14:CreateButton({
     Name = "红叶子",
     Callback = function()
@@ -311,6 +360,28 @@ Tab19:CreateButton({
     Name = "剑客V3",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/jiankeQWQ/jiankeV3/main/jianke_V3'))()
+    end
+})
+
+Tab19:CreateButton({
+    Name = "导管中心",
+    Callback = function()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\117\115\101\114\97\110\101\119\114\102\102\47\114\111\98\108\111\120\45\47\109\97\105\110\47\37\69\54\37\57\68\37\65\49\37\69\54\37\65\67\37\66\69\37\69\53\37\56\68\37\56\70\37\69\56\37\65\69\37\65\69\34\41\41\40\41\10")()
+    end
+})
+
+Tab19:CreateButton({
+    Name = "霖溺(检测服务器)",
+    Callback = function()
+        LnScript = "霖溺-免费版加载器"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ShenJiaoBen/ScriptLoader/refs/heads/main/Linni_FreeLoader.lua"))()
+    end
+})
+
+Tab19:CreateButton({
+    Name = "落叶中心",
+    Callback = function()
+        getgenv().LS="落叶中心"loadstring(game:HttpGet("https://raw.githubusercontent.com/krlpl/Deciduous-center-LS/main/%E8%90%BD%E5%8F%B6%E4%B8%AD%E5%BF%83%E6%B7%B7%E6%B7%86.txt"))()
     end
 })
 
