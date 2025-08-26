@@ -400,6 +400,13 @@ Tab20:CreateButton({
     end
 })
 
+Tab20:CreateButton({
+    Name = "ZSlll",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zuohongjian/bjb/main/ZS%20III"))()
+    end
+})
+
 Window:Show()
 
 task.spawn(function()
