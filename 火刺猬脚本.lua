@@ -245,6 +245,16 @@ Tab5:CreateButton({
     end
 })
 
+Tab5:CreateButton({
+    Name = "自动去其他服偷钻石",
+    Callback = function()
+        getgenv().WebhookURL = "" --If not used do not write anything
+loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/Farm%20Diamond%20v2.lua"))()
+
+-- (IF THE ADS POPS UP JUST CLOSE IT)
+    end
+})
+
 Tab6:CreateButton({
     Name = "sapienV1",
     Callback = function()
