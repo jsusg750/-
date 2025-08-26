@@ -65,6 +65,8 @@ local Tab17 = Window:CreateTab("力量传奇", 7734068321)
 local Tab18 = Window:CreateTab("伐木脚本", 7734068321)
 local Tab20 = Window:CreateTab("Doors", 6023426915)
 local Tab19 = Window:CreateTab("脚本中心", 6026568198)
+local Tab21 = Window:CreateTab("监狱锻炼战斗", 7734068321)
+local Tab22 = Window:CreateTab("极速传奇", 7734068321)
 
 Tab1:CreateLabel("作者: 火刺猬")
 Tab1:CreateLabel("作者QQ: 3982716135")
@@ -428,6 +430,28 @@ Tab20:CreateButton({
     Name = "ZSlll",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/zuohongjian/bjb/main/ZS%20III"))()
+    end
+})
+
+Tab21:CreateButton({
+    Name = "监狱锻炼战斗",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/main/PrisonPump"))()
+    end
+})
+
+Tab22:CreateButton({
+    Name = "极速传奇",
+    Callback = function()
+        loadstring(game:HttpGet("https://relzhub.farrghii.com/loader.lua"))()
+    end
+})
+
+Tab22:CreateToggle({
+    Name = "卡宠",
+    CurrentValue = false,
+    Callback = function(Value)
+        loadstring(game:HttpGet("https://pastebin.com/raw/uR6azdQQ"))()
     end
 })
 
