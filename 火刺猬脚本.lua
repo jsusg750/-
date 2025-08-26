@@ -299,6 +299,13 @@ Tab8:CreateButton({
     end
 })
 
+Tab8:CreateButton({
+    Name = "自动金条",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/MRAEpRnv",true))()
+    end
+})
+
 Tab9:CreateButton({
     Name = "chain脚本1",
     Callback = function()
