@@ -293,6 +293,13 @@ Tab17:CreateButton({
     end
 })
 
+Tab17:CreateButton({
+    Name = "docaV1",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DocaV1/Get-Huge-Simulator/refs/heads/main/V1.0.1"))()
+    end
+})
+
 Tab18:CreateButton({
     Name = "伐木脚本",
     Callback = function()
