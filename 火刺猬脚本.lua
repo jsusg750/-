@@ -112,6 +112,13 @@ Tab2:CreateButton({
     end
 })
 
+Tab2:CreateButton({
+    Name = "铁拳",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_rf6iQURzu1fqrytcnLBAvW34C9N55kS9g9G3CKz086rC47M6632sEd4ZZYB0AYgV.lua.txt'))()
+    end
+})
+
 Tab2:CreateToggle({
     Name = "夜视",
     CurrentValue = false,
@@ -235,6 +242,13 @@ Tab4:CreateButton({
     Name = "冰霜领主",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/LYJzX6un/raw"))();
+    end
+})
+
+Tab4:CreateButton({
+    Name = "自动战斗六边形",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Articles-Hub/ROBLOXScript/refs/heads/main/File-Script/Slap_Battles.lua"))()
     end
 })
 
