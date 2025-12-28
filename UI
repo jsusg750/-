@@ -1,7 +1,8 @@
--- ModernUI 核心库
+-- ModernUI.lua - 完整UI库
+-- 粘贴这个文件到ReplicatedStorage的ModuleScript中
+
 local ModernUI = {}
 
--- 主题配置
 ModernUI.Themes = {
     Dark = {
         Primary = Color3.fromRGB(0, 120, 215),
@@ -21,7 +22,6 @@ function ModernUI.new(theme)
         Elements = {}
     }
     
-    -- 创建屏幕GUI
     function self:CreateScreenGui(name)
         local screenGui = Instance.new("ScreenGui")
         screenGui.Name = name or "ModernUI"
@@ -30,7 +30,6 @@ function ModernUI.new(theme)
         return screenGui
     end
     
-    -- 创建按钮
     function self:CreateButton(config)
         config = config or {}
         
@@ -50,7 +49,6 @@ function ModernUI.new(theme)
         corner.CornerRadius = UDim.new(0, 8)
         corner.Parent = button
         
-        -- 悬停效果
         local originalColor = button.BackgroundColor3
         button.MouseEnter:Connect(function()
             game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
@@ -64,7 +62,6 @@ function ModernUI.new(theme)
             }):Play()
         end)
         
-        -- 点击回调
         if config.OnClick then
             button.MouseButton1Click:Connect(config.OnClick)
         end
@@ -73,7 +70,6 @@ function ModernUI.new(theme)
         return button
     end
     
-    -- 创建卡片
     function self:CreateCard(config)
         config = config or {}
         
@@ -87,7 +83,6 @@ function ModernUI.new(theme)
         corner.CornerRadius = UDim.new(0, 12)
         corner.Parent = card
         
-        -- 阴影
         local shadow = Instance.new("ImageLabel")
         shadow.Name = "Shadow"
         shadow.Size = UDim2.new(1, 10, 1, 10)
@@ -125,7 +120,6 @@ function ModernUI.new(theme)
         return card, content
     end
     
-    -- 创建开关
     function self:CreateToggle(config)
         config = config or {}
         
@@ -191,9 +185,7 @@ function ModernUI.new(theme)
         return toggleFrame
     end
     
-    -- 显示通知
-    function self:ShowNotification(title, message, type, duration)
-        type = type or "Info"
+    function self:ShowNotification(title, message, duration)
         duration = duration or 3
         
         local screenGui = Instance.new("ScreenGui")
@@ -234,7 +226,6 @@ function ModernUI.new(theme)
         notification.Parent = screenGui
         screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
         
-        -- 动画
         local slideIn = game:GetService("TweenService"):Create(notification, TweenInfo.new(0.3), {
             Position = UDim2.new(1, -320, 1, -100)
         })
@@ -250,7 +241,6 @@ function ModernUI.new(theme)
         end)
     end
     
-    -- 清理所有UI
     function self:Cleanup()
         for _, element in ipairs(self.Elements) do
             if element:IsA("GuiObject") then
