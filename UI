@@ -1,0 +1,266 @@
+-- ModernUI 核心库
+local ModernUI = {}
+
+-- 主题配置
+ModernUI.Themes = {
+    Dark = {
+        Primary = Color3.fromRGB(0, 120, 215),
+        Background = Color3.fromRGB(30, 30, 30),
+        Text = Color3.fromRGB(240, 240, 240)
+    },
+    Light = {
+        Primary = Color3.fromRGB(0, 120, 215),
+        Background = Color3.fromRGB(245, 245, 245),
+        Text = Color3.fromRGB(30, 30, 30)
+    }
+}
+
+function ModernUI.new(theme)
+    local self = {
+        Theme = ModernUI.Themes[theme or "Dark"],
+        Elements = {}
+    }
+    
+    -- 创建屏幕GUI
+    function self:CreateScreenGui(name)
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = name or "ModernUI"
+        screenGui.ResetOnSpawn = false
+        screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+        return screenGui
+    end
+    
+    -- 创建按钮
+    function self:CreateButton(config)
+        config = config or {}
+        
+        local button = Instance.new("TextButton")
+        button.Name = config.Name or "Button"
+        button.Size = config.Size or UDim2.new(0, 200, 0, 50)
+        button.Position = config.Position or UDim2.new(0.5, -100, 0.5, -25)
+        button.AnchorPoint = Vector2.new(0.5, 0.5)
+        button.BackgroundColor3 = self.Theme.Primary
+        button.TextColor3 = Color3.new(1, 1, 1)
+        button.Text = config.Text or "按钮"
+        button.Font = Enum.Font.GothamSemibold
+        button.TextSize = 16
+        button.AutoButtonColor = false
+        
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = button
+        
+        -- 悬停效果
+        local originalColor = button.BackgroundColor3
+        button.MouseEnter:Connect(function()
+            game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
+                BackgroundColor3 = originalColor:lerp(Color3.new(1, 1, 1), 0.1)
+            }):Play()
+        end)
+        
+        button.MouseLeave:Connect(function()
+            game:GetService("TweenService"):Create(button, TweenInfo.new(0.2), {
+                BackgroundColor3 = originalColor
+            }):Play()
+        end)
+        
+        -- 点击回调
+        if config.OnClick then
+            button.MouseButton1Click:Connect(config.OnClick)
+        end
+        
+        table.insert(self.Elements, button)
+        return button
+    end
+    
+    -- 创建卡片
+    function self:CreateCard(config)
+        config = config or {}
+        
+        local card = Instance.new("Frame")
+        card.Name = config.Name or "Card"
+        card.Size = config.Size or UDim2.new(0, 300, 0, 200)
+        card.BackgroundColor3 = self.Theme.Background
+        card.ClipsDescendants = true
+        
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 12)
+        corner.Parent = card
+        
+        -- 阴影
+        local shadow = Instance.new("ImageLabel")
+        shadow.Name = "Shadow"
+        shadow.Size = UDim2.new(1, 10, 1, 10)
+        shadow.Position = UDim2.new(0, -5, 0, -5)
+        shadow.BackgroundTransparency = 1
+        shadow.Image = "rbxassetid://5554236805"
+        shadow.ScaleType = Enum.ScaleType.Slice
+        shadow.SliceCenter = Rect.new(10, 10, 118, 118)
+        shadow.ImageTransparency = 0.5
+        shadow.ZIndex = card.ZIndex - 1
+        shadow.Parent = card
+        
+        if config.Title then
+            local title = Instance.new("TextLabel")
+            title.Name = "Title"
+            title.Size = UDim2.new(1, -20, 0, 50)
+            title.Position = UDim2.new(0, 10, 0, 0)
+            title.BackgroundTransparency = 1
+            title.TextColor3 = self.Theme.Text
+            title.Text = config.Title
+            title.Font = Enum.Font.GothamSemibold
+            title.TextSize = 20
+            title.TextXAlignment = Enum.TextXAlignment.Left
+            title.Parent = card
+        end
+        
+        local content = Instance.new("Frame")
+        content.Name = "Content"
+        content.Size = UDim2.new(1, -20, 1, config.Title and -60 or -20)
+        content.Position = UDim2.new(0, 10, 0, config.Title and 50 or 10)
+        content.BackgroundTransparency = 1
+        content.Parent = card
+        
+        table.insert(self.Elements, card)
+        return card, content
+    end
+    
+    -- 创建开关
+    function self:CreateToggle(config)
+        config = config or {}
+        
+        local toggleFrame = Instance.new("Frame")
+        toggleFrame.Name = config.Name or "Toggle"
+        toggleFrame.Size = config.Size or UDim2.new(0, 200, 0, 40)
+        toggleFrame.BackgroundTransparency = 1
+        
+        local label = Instance.new("TextLabel")
+        label.Name = "Label"
+        label.Size = UDim2.new(1, -60, 1, 0)
+        label.BackgroundTransparency = 1
+        label.TextColor3 = self.Theme.Text
+        label.Text = config.Text or "开关"
+        label.Font = Enum.Font.Gotham
+        label.TextSize = 16
+        label.TextXAlignment = Enum.TextXAlignment.Left
+        label.Parent = toggleFrame
+        
+        local toggleButton = Instance.new("TextButton")
+        toggleButton.Name = "ToggleButton"
+        toggleButton.Size = UDim2.new(0, 50, 0, 30)
+        toggleButton.Position = UDim2.new(1, -50, 0, 5)
+        toggleButton.BackgroundColor3 = self.Theme.Primary
+        toggleButton.AutoButtonColor = false
+        
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(1, 0)
+        corner.Parent = toggleButton
+        
+        local knob = Instance.new("Frame")
+        knob.Name = "Knob"
+        knob.Size = UDim2.new(0, 20, 0, 20)
+        knob.Position = UDim2.new(0, 5, 0.5, -10)
+        knob.BackgroundColor3 = Color3.new(1, 1, 1)
+        knob.Parent = toggleButton
+        
+        local knobCorner = Instance.new("UICorner")
+        knobCorner.CornerRadius = UDim.new(1, 0)
+        knobCorner.Parent = knob
+        
+        local isOn = config.Default or false
+        
+        local function updateToggle()
+            local tween = game:GetService("TweenService"):Create(knob, TweenInfo.new(0.2), {
+                Position = isOn and UDim2.new(1, -25, 0.5, -10) or UDim2.new(0, 5, 0.5, -10)
+            })
+            tween:Play()
+        end
+        
+        updateToggle()
+        
+        toggleButton.MouseButton1Click:Connect(function()
+            isOn = not isOn
+            updateToggle()
+            if config.OnToggle then
+                config.OnToggle(isOn)
+            end
+        end)
+        
+        toggleButton.Parent = toggleFrame
+        table.insert(self.Elements, toggleFrame)
+        return toggleFrame
+    end
+    
+    -- 显示通知
+    function self:ShowNotification(title, message, type, duration)
+        type = type or "Info"
+        duration = duration or 3
+        
+        local screenGui = Instance.new("ScreenGui")
+        screenGui.Name = "Notification"
+        screenGui.ResetOnSpawn = false
+        
+        local notification = Instance.new("Frame")
+        notification.Size = UDim2.new(0, 300, 0, 80)
+        notification.Position = UDim2.new(1, 20, 1, -100)
+        notification.AnchorPoint = Vector2.new(1, 1)
+        notification.BackgroundColor3 = self.Theme.Background
+        
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = notification
+        
+        local titleLabel = Instance.new("TextLabel")
+        titleLabel.Size = UDim2.new(1, -20, 0, 30)
+        titleLabel.Position = UDim2.new(0, 10, 0, 5)
+        titleLabel.BackgroundTransparency = 1
+        titleLabel.TextColor3 = self.Theme.Text
+        titleLabel.Text = title
+        titleLabel.Font = Enum.Font.GothamSemibold
+        titleLabel.TextSize = 18
+        titleLabel.Parent = notification
+        
+        local messageLabel = Instance.new("TextLabel")
+        messageLabel.Size = UDim2.new(1, -20, 1, -40)
+        messageLabel.Position = UDim2.new(0, 10, 0, 35)
+        messageLabel.BackgroundTransparency = 1
+        messageLabel.TextColor3 = self.Theme.Text
+        messageLabel.Text = message
+        messageLabel.Font = Enum.Font.Gotham
+        messageLabel.TextSize = 14
+        messageLabel.TextWrapped = true
+        messageLabel.Parent = notification
+        
+        notification.Parent = screenGui
+        screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+        
+        -- 动画
+        local slideIn = game:GetService("TweenService"):Create(notification, TweenInfo.new(0.3), {
+            Position = UDim2.new(1, -320, 1, -100)
+        })
+        slideIn:Play()
+        
+        task.delay(duration, function()
+            local slideOut = game:GetService("TweenService"):Create(notification, TweenInfo.new(0.3), {
+                Position = UDim2.new(1, 20, 1, -100)
+            })
+            slideOut:Play()
+            slideOut.Completed:Wait()
+            screenGui:Destroy()
+        end)
+    end
+    
+    -- 清理所有UI
+    function self:Cleanup()
+        for _, element in ipairs(self.Elements) do
+            if element:IsA("GuiObject") then
+                element:Destroy()
+            end
+        end
+        self.Elements = {}
+    end
+    
+    return self
+end
+
+return ModernUI
