@@ -17,156 +17,130 @@ local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "SiTieGui"
 ScreenGui.Parent = playerGui
 
--- 主容器 - 半透明深色
+-- 主容器
 local Main = Instance.new("Frame")
 Main.Name = "Main"
 Main.Parent = ScreenGui
 Main.BackgroundColor3 = Color3.fromRGB(20, 20, 30)
-Main.BackgroundTransparency = 0.1  -- 半透明效果
+Main.BackgroundTransparency = 0.1
 Main.BorderSizePixel = 0
-Main.Size = UDim2.new(0, 320, 0, 200)
-Main.Position = UDim2.new(0.5, -160, 0.5, -100)
+Main.Size = UDim2.new(0, 200, 0, 120)
+Main.Position = UDim2.new(0.5, -100, 0.5, -60)
 Main.AnchorPoint = Vector2.new(0.5, 0.5)
 
 local Corner = Instance.new("UICorner")
 Corner.CornerRadius = UDim.new(0, 12)
 Corner.Parent = Main
 
--- 标题栏 - 修复拖动冲突
+-- 标题栏
 local Title = Instance.new("Frame")
 Title.Name = "Title"
 Title.Parent = Main
 Title.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
 Title.BackgroundTransparency = 0.1
 Title.BorderSizePixel = 0
-Title.Size = UDim2.new(1, 0, 0, 35)
+Title.Size = UDim2.new(1, 0, 0, 30)
 
 local TitleText = Instance.new("TextLabel")
 TitleText.Name = "TitleText"
 TitleText.Parent = Title
 TitleText.BackgroundTransparency = 1
-TitleText.Size = UDim2.new(1, -80, 1, 0)
-TitleText.Position = UDim2.new(0, 15, 0, 0)
+TitleText.Size = UDim2.new(1, -60, 1, 0)
+TitleText.Position = UDim2.new(0, 10, 0, 0)
 TitleText.Font = Enum.Font.GothamBold
 TitleText.Text = "死铁轨脚本"
 TitleText.TextColor3 = Color3.fromRGB(255, 80, 80)
-TitleText.TextSize = 16
+TitleText.TextSize = 14
 
--- 控制按钮 - 添加圆角
+-- 关闭按钮
 local CloseBtn = Instance.new("TextButton")
 CloseBtn.Name = "CloseBtn"
 CloseBtn.Parent = Title
 CloseBtn.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
 CloseBtn.BorderSizePixel = 0
-CloseBtn.Position = UDim2.new(1, -45, 0.5, -10)
-CloseBtn.Size = UDim2.new(0, 20, 0, 20)
+CloseBtn.Position = UDim2.new(1, -25, 0.5, -8)
+CloseBtn.Size = UDim2.new(0, 20, 0, 16)
 CloseBtn.Font = Enum.Font.GothamBold
 CloseBtn.Text = "×"
 CloseBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseBtn.TextSize = 14
-CloseBtn.ZIndex = 2  -- 确保按钮在最上层
+CloseBtn.TextSize = 12
 
 local CloseCorner = Instance.new("UICorner")
 CloseCorner.CornerRadius = UDim.new(0, 6)
 CloseCorner.Parent = CloseBtn
 
-local MinBtn = Instance.new("TextButton")
-MinBtn.Name = "MinBtn"
-MinBtn.Parent = Title
-MinBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 80)
-MinBtn.BorderSizePixel = 0
-MinBtn.Position = UDim2.new(1, -70, 0.5, -10)
-MinBtn.Size = UDim2.new(0, 20, 0, 20)
-MinBtn.Font = Enum.Font.GothamBold
-MinBtn.Text = "－"
-MinBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-MinBtn.TextSize = 14
-MinBtn.ZIndex = 2
+-- 铲子快速攻击功能按钮
+local ShovelBtn = Instance.new("TextButton")
+ShovelBtn.Name = "ShovelBtn"
+ShovelBtn.Parent = Main
+ShovelBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+ShovelBtn.BackgroundTransparency = 0.1
+ShovelBtn.BorderSizePixel = 0
+ShovelBtn.Position = UDim2.new(0.5, -80, 0, 40)
+ShovelBtn.Size = UDim2.new(0, 160, 0, 50)
+ShovelBtn.Font = Enum.Font.GothamBold
+ShovelBtn.Text = "🔨 铲子快速攻击\n关闭"
+ShovelBtn.TextColor3 = Color3.fromRGB(220, 220, 220)
+ShovelBtn.TextSize = 14
+ShovelBtn.TextWrapped = true
 
-local MinCorner = Instance.new("UICorner")
-MinCorner.CornerRadius = UDim.new(0, 6)
-MinCorner.Parent = MinBtn
+local ShovelCorner = Instance.new("UICorner")
+ShovelCorner.CornerRadius = UDim.new(0, 10)
+ShovelCorner.Parent = ShovelBtn
 
--- 导航按钮容器 - 修复布局
-local Nav = Instance.new("Frame")
-Nav.Name = "Nav"
-Nav.Parent = Main
-Nav.BackgroundTransparency = 1
-Nav.Position = UDim2.new(0, 10, 0, 40)
-Nav.Size = UDim2.new(1, -20, 0, 30)
+-- 铲子快速攻击功能
+getgenv().shovelFarm = false
 
-local NavItems = {"🏠主页", "⚔️战斗", "🚀移动", "👁️视觉"}
-local NavBtns = {}
-
-for i, text in ipairs(NavItems) do
-    local Btn = Instance.new("TextButton")
-    Btn.Name = "NavBtn"..i
-    Btn.Parent = Nav
-    Btn.BackgroundColor3 = i == 1 and Color3.fromRGB(255, 80, 80) or Color3.fromRGB(50, 50, 60)
-    Btn.BackgroundTransparency = 0.1
-    Btn.BorderSizePixel = 0
-    Btn.Position = UDim2.new(0, (i-1)*75, 0, 0)
-    Btn.Size = UDim2.new(0, 70, 1, 0)
-    Btn.Font = Enum.Font.Gotham
-    Btn.Text = text
-    Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Btn.TextSize = 12
-    Btn.ZIndex = 2
-    
-    local BtnCorner = Instance.new("UICorner")
-    BtnCorner.CornerRadius = UDim.new(0, 8)
-    BtnCorner.Parent = Btn
-    
-    table.insert(NavBtns, Btn)
+-- 第一个循环：蓄力攻击
+local function chargeAttack()
+    while getgenv().shovelFarm do
+        task.wait()
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shovel,
+            [2] = 1767223075.838953
+        }
+        game:GetService("ReplicatedStorage").Shared.Network.RemoteEvent.ChargeMelee:FireServer(unpack(args))
+    end
 end
 
--- 功能区域 - 修复布局
-local Content = Instance.new("ScrollingFrame")
-Content.Name = "Content"
-Content.Parent = Main
-Content.BackgroundTransparency = 1
-Content.Position = UDim2.new(0, 10, 0, 75)
-Content.Size = UDim2.new(1, -20, 1, -85)
-Content.ScrollBarThickness = 4
-Content.CanvasSize = UDim2.new(0, 0, 0, 120)
-
--- 功能按钮 - 添加圆角，修复布局
-local Features = {
-    "自动刷怪", "速度提升", "透视显示",
-    "上帝模式", "飞行模式", "夜视模式"
-}
-
-for i, name in ipairs(Features) do
-    local Btn = Instance.new("TextButton")
-    Btn.Name = name
-    Btn.Parent = Content
-    Btn.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
-    Btn.BackgroundTransparency = 0.1
-    Btn.BorderSizePixel = 0
-    Btn.Position = UDim2.new(0, 0, 0, (i-1)*35)
-    Btn.Size = UDim2.new(1, 0, 0, 30)
-    Btn.Font = Enum.Font.Gotham
-    Btn.Text = name
-    Btn.TextColor3 = Color3.fromRGB(220, 220, 220)
-    Btn.TextSize = 12
-    Btn.ZIndex = 2
-    
-    local BtnCorner = Instance.new("UICorner")
-    BtnCorner.CornerRadius = UDim.new(0, 6)
-    BtnCorner.Parent = Btn
-    
-    Btn.MouseButton1Click:Connect(function()
-        Btn.BackgroundColor3 = Btn.BackgroundColor3 == Color3.fromRGB(50, 50, 60) 
-            and Color3.fromRGB(80, 255, 80) 
-            or Color3.fromRGB(50, 50, 60)
-    end)
+-- 第二个循环：挥舞攻击
+local function swingAttack()
+    while getgenv().shovelFarm do
+        task.wait()
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Shovel,
+            [2] = 1767223076.988726,
+            [3] = Vector3.new(0.4559113681316376, -0.2772691547870636, 0.8457344770431519)
+        }
+        game:GetService("ReplicatedStorage").Shared.Network.RemoteEvent.SwingMelee:FireServer(unpack(args))
+    end
 end
 
--- 修复拖动功能 - 只在标题栏空白区域拖动
+-- 铲子按钮点击事件
+ShovelBtn.MouseButton1Click:Connect(function()
+    getgenv().shovelFarm = not getgenv().shovelFarm
+    
+    if getgenv().shovelFarm then
+        ShovelBtn.BackgroundColor3 = Color3.fromRGB(80, 255, 80)
+        ShovelBtn.Text = "🔨 铲子快速攻击\n开启"
+        
+        -- 启动两个攻击循环
+        task.spawn(chargeAttack)
+        task.spawn(swingAttack)
+        
+        print("铲子快速攻击已开启")
+    else
+        ShovelBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+        ShovelBtn.Text = "🔨 铲子快速攻击\n关闭"
+        
+        print("铲子快速攻击已关闭")
+    end
+end)
+
+-- 拖动功能
 local dragging = false
 local dragStart, startPos
 
--- 只在标题栏文本区域拖动
 TitleText.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
@@ -188,32 +162,15 @@ UserInputService.InputChanged:Connect(function(input)
     end
 end)
 
--- 导航按钮功能
-for i, btn in ipairs(NavBtns) do
-    btn.MouseButton1Click:Connect(function()
-        for j, navBtn in ipairs(NavBtns) do
-            navBtn.BackgroundColor3 = i == j and Color3.fromRGB(255, 80, 80) or Color3.fromRGB(50, 50, 60)
-        end
-    end)
-end
-
--- 缩小功能
-local minimized = false
-MinBtn.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    Main.Size = minimized and UDim2.new(0, 320, 0, 35) or UDim2.new(0, 320, 0, 200)
-    Content.Visible = not minimized
-    Nav.Visible = not minimized
-    MinBtn.Text = minimized and "＋" or "－"
-end)
-
 -- 关闭功能
 CloseBtn.MouseButton1Click:Connect(function()
+    -- 关闭铲子攻击功能
+    getgenv().shovelFarm = false
     ScreenGui:Destroy()
 end)
 
 -- 初始动画
 Main.Size = UDim2.new(0, 0, 0, 0)
-TweenService:Create(Main, TweenInfo.new(0.3), {Size = UDim2.new(0, 320, 0, 200)}):Play()
+TweenService:Create(Main, TweenInfo.new(0.3), {Size = UDim2.new(0, 200, 0, 120)}):Play()
 
-print("死铁轨脚本UI加载完成")
+print("死铁轨脚本 - 铲子快速攻击UI加载完成")
