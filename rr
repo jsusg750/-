@@ -1,0 +1,185 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local tool = nil
+local killRakeEnabled = true
+
+-- 安全执行函数
+local function safeExecute(funcName, func)
+    local success, err = pcall(func)
+    if not success then
+        warn("错误 [" .. funcName .. "]: " .. tostring(err))
+        return false
+    end
+    return true
+end
+
+-- 击杀NPC函数
+local function killNPC(hit)
+    safeExecute("killNPC", function()
+        if not hit or not hit.Parent then return end
+        
+        local humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")
+        if humanoid and hit.Parent ~= character then
+            humanoid.Health = 0
+        end
+    end)
+end
+
+-- 击杀Rake函数（优化版）
+local function killRake()
+    while killRakeEnabled do
+        safeExecute("killRake", function()
+            local rake = workspace:FindFirstChild("Rake")
+            if rake then
+                local humanoid = rake:FindFirstChildOfClass("Humanoid")
+                if humanoid and humanoid.Health > 0 then
+                    humanoid.Health = 0
+                    print("已击杀Rake")
+                end
+            end
+            
+            -- 击杀其他NPC
+            for _, npc in pairs(workspace:GetChildren()) do
+                if npc:IsA("Model") and npc ~= character then
+                    local humanoid = npc:FindFirstChildOfClass("Humanoid")
+                    if humanoid and humanoid.Health > 0 then
+                        -- 检查是否是敌对NPC（根据游戏调整条件）
+                        if npc.Name == "Rake" or npc:FindFirstChild("Head") then
+                            humanoid.Health = 0
+                        end
+                    end
+                end
+            end
+        end)
+        
+        wait(0.5) -- 更频繁的检查
+    end
+end
+
+-- 设置工具函数
+local function setupTool(newTool)
+    safeExecute("setupTool", function()
+        if tool and tool.Parent then
+            tool.Handle.Touched:Disconnect()
+        end
+        
+        tool = newTool
+        tool.Handle.Touched:Connect(killNPC)
+        print("电击棒已装备")
+    end)
+end
+
+-- 角色添加时的处理
+local function onCharacterAdded(char)
+    safeExecute("onCharacterAdded", function()
+        character = char
+        
+        -- 等待角色完全加载
+        char:WaitForChild("Humanoid")
+        
+        -- 查找电击棒
+        local stunStick = char:FindFirstChild("StunStick")
+        if stunStick then
+            setupTool(stunStick)
+        end
+        
+        -- 监听工具装备
+        char.ChildAdded:Connect(function(child)
+            if child:IsA("Tool") and child.Name == "StunStick" then
+                setupTool(child)
+            end
+        end)
+    end)
+end
+
+-- 背包监听
+player.Backpack.ChildAdded:Connect(function(child)
+    safeExecute("BackpackListener", function()
+        if child:IsA("Tool") and child.Name == "StunStick" then
+            wait(0.5) -- 等待工具可能被装备
+            if child.Parent == player.Backpack then
+                -- 自动装备工具
+                child.Parent = character
+            end
+        end
+    end)
+end)
+
+-- 死亡重置处理
+local function onCharacterDied()
+    safeExecute("onCharacterDied", function()
+        killRakeEnabled = false
+        wait(3) -- 等待重生
+        killRakeEnabled = true
+        killRake() -- 重新启动击杀循环
+    end)
+end
+
+-- 主初始化函数
+local function initialize()
+    print("自动击杀脚本启动")
+    
+    -- 初始设置
+    if character then
+        onCharacterAdded(character)
+    end
+    
+    -- 监听角色添加
+    player.CharacterAdded:Connect(onCharacterAdded)
+    
+    -- 监听死亡
+    player.CharacterAdded:Connect(function(char)
+        local humanoid = char:WaitForChild("Humanoid")
+        humanoid.Died:Connect(onCharacterDied)
+    end)
+    
+    -- 启动Rake击杀循环
+    task.spawn(killRake)
+    
+    -- 自动装备工具
+    task.spawn(function()
+        while true do
+            safeExecute("AutoEquip", function()
+                if character and not character:FindFirstChild("StunStick") then
+                    local stick = player.Backpack:FindFirstChild("StunStick")
+                    if stick then
+                        stick.Parent = character
+                    end
+                end
+            end)
+            wait(2) -- 每2秒检查一次
+        end
+    end)
+end
+
+-- 安全启动
+local success, err = pcall(initialize)
+if not success then
+    warn("脚本启动失败: " .. tostring(err))
+end
+
+-- 提供控制函数（可选）
+getgenv().ToggleKillRake = function()
+    killRakeEnabled = not killRakeEnabled
+    if killRakeEnabled then
+        print("Rake击杀已启用")
+        task.spawn(killRake)
+    else
+        print("Rake击杀已禁用")
+    end
+end
+
+getgenv().StopScript = function()
+    killRakeEnabled = false
+    if tool then
+        tool.Handle.Touched:Disconnect()
+    end
+    print("脚本已停止")
+end
+
+print("自动击杀NPC和Rake脚本加载完成")
+print("使用 ToggleKillRake() 来切换Rake击杀功能")
+print("使用 StopScript() 来停止脚本")
